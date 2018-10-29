@@ -28,11 +28,11 @@ class Square{
 
   set(board){
     this.board = board;
-  }
+  }// end set board
 
   get(_elementID){
     return this._elementID;
-  }
+  }// end get _elementID
 } // End Square Class
 
 
@@ -51,19 +51,18 @@ class Board{
     this.animatePattern();
   }// End board class constructor
 
-  // After player clicks, update next
   increaseTurnInPattern(){
     this.turnInPattern++;
-  }
+  }// end increaseTurnInPattern
 
-  //
+
   resetTurnInPattern(){
     this.turnInPattern = 0;
     this.generateNextPattern();
     this.animatePattern();
-  }
+  }// end resetTurnInPattern
 
-  //
+
   getCorrectNext(){
     if(this.gameOver){
       console.log('GAME - OVER');
@@ -71,34 +70,34 @@ class Board{
     else{
       return this.pattern[this.turnInPattern]._elementID;
     }
-  }
+  } // end getCorrectNext
 
-  //
+
   generateStartPattern(){
     let pattern = [];
     for(let i = 0; i < this.patternCount; i++){
       pattern.push(this.selectRandomSquare());
     }
     return pattern;
-  }
+  }// end generateStartPattern
 
   increaseScore(){
     this.score++;
     let scoreElement = $('#scoreElement')
     scoreElement.empty();
     scoreElement.append(`<h1>Score - ${this.score}</h1>`);
-  };
+  }// end increaseScore
+
   resetScore(){
     this.score = 0
     let scoreElement = $('#scoreElement')
     scoreElement.empty();
     scoreElement.append(`<h1> GAME - OVER </h1>`);
-    scoreElement.css('color','red');
-  };
+  }// end resetScore
 
   generateNextPattern(){
     this.pattern.push(this.selectRandomSquare());
-  }
+  }// end generateNextPattern
 
   animatePattern(){
     for(let i = 0; i<this.pattern.length;i++){
@@ -112,11 +111,7 @@ class Board{
         },400);
       }, i*800 );
     }
-  }
-
-  startTurn(){
-
-  }
+  }// end animatePattern
 
   restartGame(){
     this.score = 0;
@@ -135,7 +130,7 @@ class Board{
         $(square.get()).on('click');
       }
     }
-  }
+  }// end endGame
 
 
 
@@ -163,7 +158,7 @@ $(document).ready(function(){
       $(`body`).css('background-color','#3b444b');
       theme.dark = true;
     }
-  });
+  }); // end theme on click
 
   // Create an array to hold element IDs
   let square_elementIDs = ['#squareA','#squareB','#squareC',
@@ -179,4 +174,5 @@ $(document).ready(function(){
   for(let pattern of board.pattern){
     console.log(`${pattern.get()}`);
   }
-});
+}// end function call
+);
